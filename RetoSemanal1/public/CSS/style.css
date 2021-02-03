@@ -1,0 +1,82 @@
+/* 
+Palette Color
+Primary
+Principal: #616161
+Light: #8e8e8e
+Dark: #373737
+
+Secondary 
+Principal: #b71c1c
+Light: #f05545
+Dark: #7f0000
+
+Text #ffffff
+*/
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+h1, h6, h4, h5{
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+}
+h1{
+    font-size: 13vh;
+}
+p{
+    font-size: 4vh;
+    font-family: 'Satisfy', cursive;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-image: url(../imagenes/fondo.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-x: center;
+    background-size: cover top;
+    color: #ffffff;
+
+}
+.fondo{
+    background-color: rgba(24, 24, 24, 0.8);
+    width: min-content;
+    width: -moz-min-content;   
+    width: -webkit-min-content;
+    border-radius: 5vh;
+    margin-bottom: 3vh;
+    margin-top: 5vh;
+    padding: 0;
+}
+.portada{
+    height: 50vh;
+    border-radius: 5vh;
+    margin: 0;
+}
+footer{
+    height: 6vh;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    bottom: 0;
+}
+footer div a img{
+    width: 5vh;
+    margin: 0.5vh;
+    margin-left: 0.5vh;
+    margin-right: 0.5vh;
+}
+footer div a :hover{
+    width: 6vh;
+    margin: 0vh;
+}
+
+.centrado{
+    align-content: center;
+    text-align: center;
+}
+.espacio{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
