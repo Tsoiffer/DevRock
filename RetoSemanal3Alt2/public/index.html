@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <!-- 
+    Buenas Jony!!
+    Soy Tomas Soiffer, tengo 26 años y estudio ingenieria en sistemas en la UTN
+
+    Muy manija con el SummerHAck
+    Gracias por tanto y perdon por tan poco!
+  -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista DevRock</title>
+
+    <meta name="theme-color" content="#000000"> 
+    <link rel="icon" type="image/jpg" href="imagenes/lista-de-la-compra.png">
+    <meta name="description" content="Arma tus listas y no te olvides de nada">
+    <meta name="Keywords" content="lista, compras, recordatorio, varios">
+    <meta name="author" content="Tomas Soiffer">
+    <meta name="copyright" content="Escuela DevRock">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@tomassoiffer" />
+    <meta name="twitter:title" content="Lista DevRock">
+    <meta name="twitter:description" content="Arma tus listas y no te olvides de nada">
+    <meta name="twitter:image" content="https://summerhackreto3.web.app/imagenes/lista-de-la-compra.png" />
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Lista DevRock">
+    <meta property="og:type" content="music.song">
+    <meta property="og:url" content="URL">
+    <meta property="og:image" content="https://summerhackreto3.web.app/imagenes/lista-de-la-compra.png"/>
+    <meta property="og:description" content="Arma tus listas y no te olvides de nada">
+    <meta property="og:site_name" content="Lista DevRock">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+  <body>
+    <header class="container-lg">
+      <a href="#"><img src="imagenes/lista-de-la-compra.png" alt="" class="off"></a> <h3>Lista DevRock</h3>
+    </header>
+
+
+    <section class="container-lg" >
+    <div class="row ">
+    <div id="formulario" class="card formulariopc col-4">
+      <h2>SUMAR ELEMENTOS</h2>
+      <div class="mb-3 ">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombreLista" placeholder="Ingrese el nombre">
+      </div>
+      <div class="accordion accordion-flush" id="accordionLista">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" id="botonTipos">
+              Tipo
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionLista">
+            <div class="accordion-body">
+              <div class="list-group">
+                <label class="list-group-item">
+                  <input id="Carniceria" class="form-check-input me-1" type="checkbox"  value="" >
+                  <img src="imagenes/Carniceria.svg" alt="">  Carniceria
+                </label>
+                <label class="list-group-item">
+                  <input id="Electro" class="form-check-input me-1" type="checkbox" value="" >
+                  <img src="imagenes/Electro.svg" alt=""> Electro
+                </label>
+                <label class="list-group-item">
+                  <input id="Panaderia" class="form-check-input me-1" type="checkbox" value="" >
+                  <img src="imagenes/Panaderia.svg" alt=""> Panaderia
+                </label>
+                <label class="list-group-item">
+                  <input id="Perfumeria" class="form-check-input me-1" type="checkbox" value="" >
+                  <img src="imagenes/Perfumeria.svg" alt=""> Perfumeria
+                </label>
+                <label class="list-group-item">
+                  <input id="Almacen" class="form-check-input me-1" type="checkbox" value="" >
+                  <img src="imagenes/Almacen.svg" alt="">  Varios
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+        <textarea class="form-control" id="descripcion" rows="3"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" id="btnADD">Agregar</button>
+      </div>
+      <div class="card listas col-8" id="lista">
+        <h1>NO HAY ELEMENTOS EN LA LISTA</h1>
+        <div>
+        <img src="imagenes/lista-de-la-compra.png" alt="" id="nada">
+      </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" id="agregarLista"><h1>+</h1></button>
+
+    </section>
+
+
+    <footer>
+
+    </footer>
+
+
+    <script>
+
+
+      
+      let primeringreso = 0
+      let lista = document.getElementById("lista")
+      let botonAdd = document.getElementById("btnADD")
+      let formulario = document.getElementById("formulario")
+      let agregarLista = document.getElementById("agregarLista")
+      let nombreLista = document.getElementById("nombreLista")
+      let descripcion = document.getElementById("descripcion")
+      let Carniceria = document.getElementById("Carniceria")
+      let Almacen = document.getElementById("Almacen")
+      let Electro = document.getElementById("Electro")
+      let Panaderia = document.getElementById("Panaderia")
+      let Perfumeria = document.getElementById("Perfumeria")
+      let cajaDeTipos = document.getElementById("flush-collapseOne")
+      let form = 0
+      let contador = 0
+      let icono = ""
+      refrescar()
+      botonAdd.addEventListener("click",agregarElementoALaLista)
+      agregarLista.addEventListener("click",mostrarFormulario)
+      document.addEventListener("click",function(e){
+        
+          console.log(e.target.localName )
+        
+      })
+
+      cajaDeTipos.addEventListener("click",function(e){
+        if(e.target.localName == 'input'){
+          window.setTimeout(falsoclick, 200)
+        }
+      })
+
+      function falsoclick(){
+      document.getElementById("botonTipos").click();
+    }
+      
+      function verCheckbox(){
+        contador = 0
+        if(Carniceria.checked==true){
+          icono = "Carniceria"
+          contador = contador+1
+        }
+        if(Almacen.checked==true){
+          icono = "Almacen"
+          contador = contador+1
+        }
+        if(Electro.checked==true){
+          icono = "Electro"
+          contador = contador+1
+        }
+        if(Panaderia.checked==true){
+          icono = "Panaderia"
+          contador = contador+1
+        }
+        if(Perfumeria.checked==true){
+          icono = "Perfumeria"
+          contador = contador+1
+        }
+      }
+
+      
+
+      function agregarElementoALaLista(){
+        verCheckbox()
+        if( contador != 1 ||  nombreLista.value == ""){
+          alert("Falto complentar alguno de los campos o selecciono mas de un Tipo de Lista, vuelva a cargar")
+        }
+        else{
+        if(primeringreso==0){
+          primeringreso = 1
+          
+          lista.innerHTML = `
+          <div class="accordion primeracordion" id="accordionPrimero">
+          <div class="accordion-item">
+          <h2 class="accordion-header" id="heading${primeringreso}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${primeringreso}" aria-expanded="false" aria-controls="collapseOne">
+              ${primeringreso}-<img src="imagenes/${icono}.svg" alt="">${nombreLista.value}
+            </button>
+          </h2>
+          <div id="collapse${primeringreso}" class="accordion-collapse collapse" aria-labelledby="heading${primeringreso}" data-bs-parent="#accordionPrimero">
+            <div class="accordion-body">
+              ${descripcion.value}
+            </div>
+          </div>
+          </div>
+          </div>
+          `
+          
+        }
+        else{
+          primeringreso = primeringreso+1
+          lista.innerHTML += `
+          <div class="accordion" id="accordionVarios">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading${primeringreso}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${primeringreso}" aria-expanded="true" aria-controls="collapseOne">
+              ${primeringreso}-<img src="imagenes/${icono}.svg" alt="">${nombreLista.value}
+            </button>
+          </h2>
+          <div id="collapse${primeringreso}" class="accordion-collapse collapse" aria-labelledby="heading${primeringreso}" data-bs-parent="#accordionVarios">
+            <div class="accordion-body">
+              ${descripcion.value}
+            </div>
+          </div>
+        </div>
+      </div>
+          
+          `
+        }
+        if(form==1){
+          formulario.style.zIndex = "1"
+        lista.style.zIndex = "50"
+        form = 0
+        document.getElementById("flush-collapseOne").className = "accordion-collapse collapse";
+        }
+      }
+
+      refrescar()
+      }
+
+      function refrescar(){
+        document.getElementById("formulario").value = ""
+      document.getElementById("nombreLista").value = ""
+      document.getElementById("descripcion").value = ""
+      icono = ""
+      document.getElementById("Carniceria").checked = false
+      document.getElementById("Almacen").checked = false
+      document.getElementById("Electro").checked = false
+      document.getElementById("Panaderia").checked = false
+      document.getElementById("Perfumeria").checked = false
+      document.getElementById("flush-collapseOne").className = "accordion-collapse collapse";
+      }
+
+      function mostrarFormulario(){
+        if(form==0){
+        formulario.style.zIndex = "50"
+        lista.style.zIndex = "1"
+        form = 1
+        }
+        else
+        {
+        formulario.style.zIndex = "1"
+        lista.style.zIndex = "50"
+        form = 0
+        document.getElementById("flush-collapseOne").className = "accordion-collapse collapse";
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>
