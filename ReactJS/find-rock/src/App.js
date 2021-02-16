@@ -1,26 +1,24 @@
-import logo from "./logo.svg";
+import React, { Component } from "react";
+import PageSearchResult from "./components/page-search-result";
+import PageHome from "./components/page-home";
+import Layout from "./components/layout";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hola Mundo!</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<Layout>
+				<Switch>
+					<Route exact path="/busqueda" component={PageSearchResult}></Route>
+					<Route exact path="/artista" component={PageSearchResult}></Route>
+					<Route exact path="/" component={PageHome}></Route>
+				</Switch>
+			</Layout>
+		</BrowserRouter>
+	);
 }
 
 export default App;
