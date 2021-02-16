@@ -4,10 +4,16 @@ import SearchResult from "./search-result";
 
 class PageSearchResult extends React.Component {
 	state = {};
+	componentDidMount() {
+		let search = this.props.history.location.search.substr(1);
+		console.log(search);
+		this.setState({ busqueda: search });
+	}
 	handleChange = (e) => {
 		this.setState({
-			[e.target.name]: e.target.value,
+			busqueda: e.target.value,
 		});
+		this.props.history.push("/busqueda?" + e.target.value);
 	};
 	render() {
 		return (

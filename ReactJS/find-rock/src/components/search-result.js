@@ -1,6 +1,7 @@
 import ArtistCard from "./artist-card";
 import Loading from "./loading";
 import React, { Component } from "react";
+import "./search-bar.css";
 
 class SearchResult extends React.Component {
 	state = {
@@ -10,14 +11,20 @@ class SearchResult extends React.Component {
 			results: [],
 		},
 	};
-	componentDidMount() {
-		this.setState({ loading: true });
-		this.fetchData("https://rickandmortyapi.com/api/character/?page=2");
+	componentWillReceiveProps(e) {
+		let termino = e.busqueda;
+
+		this.fetchData(
+			"https://rickandmortyapi.com/api/character/?page=" + termino
+		);
 	}
+	// componentDidMount() {
+	// 	this.fetchData("https://rickandmortyapi.com/api/character/?page=2");
+	// }
 	fetchData = async (url) => {
+		this.setState({ loading: true });
 		const response = await fetch(url);
 		const data = await response.json();
-		console.log(data, "lo que trajo la API");
 		if (data.error) {
 			this.setState({
 				error: true,
@@ -25,6 +32,7 @@ class SearchResult extends React.Component {
 			});
 		} else {
 			this.setState({
+				error: false,
 				loading: false,
 				data: data,
 			});
@@ -36,7 +44,7 @@ class SearchResult extends React.Component {
 				{this.state.error && <h1>ERROR DE ALGO</h1>}
 				{this.state.loading && <Loading />}
 				<div className="container">
-					<div className="row">
+					<div className="row centrado">
 						{this.state.data.results.map((item, i) => {
 							return (
 								<ArtistCard
@@ -46,7 +54,6 @@ class SearchResult extends React.Component {
 								></ArtistCard>
 							);
 						})}
-						<h1>{this.props.busqueda}</h1>
 					</div>
 				</div>
 			</React.Fragment>
